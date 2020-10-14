@@ -35,6 +35,7 @@ int main(void){
     matrix[arr2[i]-1][arr1[i]-1] += 1;
   }
 
+
     int simple = 1;
     for(int i =0; i < max_node; ++i){
       if(simple == 0 ) break;
@@ -52,10 +53,19 @@ int main(void){
 
     if(simple == 0) {
       printf("\nGraph isn't simple");
-      printf("\nConnectivity can't be calculated\n");
+      printf("\nConnectivity can't be calculated\n\n");
     }
     else {
       printf("\nGraph is simple");
+      int nodes = 0;
+        for(int i =0; i < max_node; ++i){
+          for(int j = 0; j< max_node; ++j){
+            if(matrix[i][j] == 1){
+              nodes +=1;
+              break;
+            }
+          }
+        }
       int edges = 0;
       for(int i =0; i < max_node; ++i){
         for(int j = 0; j < max_node; ++j){
@@ -63,9 +73,10 @@ int main(void){
         }
     }
     edges /= 2;
+    printf("\nThe number of nodes = %d", nodes);
     printf("\nThe number of edges = %d", edges);
-    if(edges > (max_node-1)*(max_node-2)/2) printf("\nGraph is connected\n");
-    else printf("\nGraph isn't connected\n");
+    if(edges > (nodes-1)*(nodes-2)/2) printf("\nGraph is connected\n\n");
+    else printf("\nGraph isn't connected\n\n");
   }
 
   FILE *file;
