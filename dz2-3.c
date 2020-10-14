@@ -4,7 +4,7 @@
 int main(void){
   int arr1[100];
   int arr2[100];
-  printf("Enter the graph; write -1 - -1 to end\n");
+  printf("Enter the graph, write -1 - -1 to end\n");
   int a = 0,b = 0;
   int max_node = -1;;
   do{
