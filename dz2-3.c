@@ -52,7 +52,7 @@ int main(void){
 
     if(simple == 0) {
       printf("\nGraph isn't simple");
-      printf("\nConnectivity can't be calculated");
+      printf("\nConnectivity can't be calculated\n");
     }
     else {
       printf("\nGraph is simple");
