@@ -28,18 +28,19 @@ int main(void){
 
   for(int i = 0; i < a; ++i){
     if(arr1[i] == arr2[i]){
-      matrix[arr1[i]-1][arr2[i]-1] += 1;
+      matrix[arr1[i]][arr2[i]] += 1;
       continue;
     }
-    matrix[arr1[i]-1][arr2[i]-1] += 1;
-    matrix[arr2[i]-1][arr1[i]-1] += 1;
+
+    matrix[arr1[i]][arr2[i]] += 1;
+    matrix[arr2[i]][arr1[i]] += 1;
   }
 
 
     int simple = 1;
-    for(int i =0; i < max_node; ++i){
+    for(int i =1; i <= max_node; ++i){
       if(simple == 0 ) break;
-      for(int j = 0; j < max_node; ++j){
+      for(int j = 1; j <= max_node; ++j){
         if((i == j) && matrix[i][j] > 0){
           simple = 0;
           break;
@@ -67,14 +68,12 @@ int main(void){
           }
         }
       int edges = 0;
-      for(int i =0; i < max_node; ++i){
-        for(int j = 0; j < max_node; ++j){
+      for(int i =1; i < max_node; ++i){
+        for(int j = 1; j < max_node; ++j){
           if(matrix[i][j] == 1) edges += 1;
         }
     }
-    edges /= 2;
-    printf("\nThe number of nodes = %d", nodes);
-    printf("\nThe number of edges = %d", edges);
+    
     if(edges > (nodes-1)*(nodes-2)/2) printf("\nGraph is connected\n\n");
     else printf("\nGraph isn't connected\n\n");
   }
@@ -82,8 +81,18 @@ int main(void){
   FILE *file;
   file = fopen("graph.dot", "w");
   fprintf(file,"graph gr{\n");
-  for(int i = 0; i < a; ++i)
+  for(int i = 0; i < a; ++i){
+    if(arr1[i] == 0){
+      fprintf(file,"\t%d;\n",arr2[i]);
+      continue;
+    }
+    if(arr2[i] == 0) {
+      fprintf(file,"\t%d;\n",arr1[i]);
+    continue;
+  }
     fprintf(file, "\t%d -- %d;\n", arr1[i], arr2[i]);
+
+  }
   fprintf(file, "}");
   fclose(file);
 
